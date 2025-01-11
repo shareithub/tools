@@ -23,4 +23,4 @@ wget -qO apasih.sh https://raw.githubusercontent.com/shareithub/tools/refs/heads
 # ENGLISH VERSION
 
 ```
-wget -qO apasih.sh https://raw.githubusercontent.com/shareithub/tools/refs/heads/main/apasih_english.sh && bash apasih_english.sh
+wget -qO apasih_english.sh https://raw.githubusercontent.com/shareithub/tools/refs/heads/main/apasih_english.sh && bash apasih_english.sh
