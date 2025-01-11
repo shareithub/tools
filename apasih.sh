@@ -67,6 +67,15 @@ install_packages_termux() {
 
 # Fungsi untuk memeriksa apakah pengguna ingin melanjutkan instalasi
 ask_install() {
+    echo -e "${CYAN}Daftar paket yang akan diinstal:${NC}"
+    
+    # Tentukan daftar paket yang akan diinstal
+    packages_to_install=("git" "python3-pip" "python3-venv")
+    
+    for package in "${packages_to_install[@]}"; do
+        echo "  - $package"
+    done
+    
     read -p "Apakah Anda ingin melanjutkan instalasi paket? (y/n): " install_choice
     if [[ "$install_choice" != "y" ]]; then
         echo -e "${YELLOW}Instalasi dibatalkan. Melewati langkah instalasi.${NC}"
