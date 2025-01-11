@@ -20,9 +20,11 @@ ${NC}"
 # Pesan intro
 echo -e "${CYAN}
 𝘋𝘰𝘯'𝘵 𝘧𝘰𝘳𝘨𝘦𝘵 𝘵𝘰 𝘫𝘰𝘪𝘯 𝘰𝘶𝘳 𝘰𝘧𝘧𝘪𝘤𝘪𝘢𝘭 𝘤𝘩𝘢𝘯𝘯𝘦𝘭:
-Telegram: https://t.me/SHAREITHUB_COM
-Youtube: https://www.youtube.com/@SHAREITHUB_COM
-Repo Github: https://github.com/shareithub/
+Telegram : https://t.me/SHAREITHUB_COM
+Facebook : https://www.facebook.com/shareithub
+Youtube : https://www.youtube.com/@SHAREITHUB_COM
+Repo Github : https://github.com/shareithub/
+
 ${NC}"
 
 # Fungsi untuk memeriksa dan menginstal paket di Ubuntu
@@ -61,6 +63,16 @@ install_packages_termux() {
     done
 
     echo -e "${GREEN}Semua paket berhasil diinstal atau diperbarui di Termux!${NC}"
+}
+
+# Fungsi untuk memeriksa apakah pengguna ingin melanjutkan instalasi
+ask_install() {
+    read -p "Apakah Anda ingin melanjutkan instalasi paket? (y/n): " install_choice
+    if [[ "$install_choice" != "y" ]]; then
+        echo -e "${YELLOW}Instalasi dibatalkan. Melewati langkah instalasi.${NC}"
+        return 1  # Mengembalikan 1 sebagai tanda bahwa instalasi dibatalkan
+    fi
+    return 0  # Instalasi dilanjutkan
 }
 
 # Fungsi untuk meng-clone repository Git
@@ -136,10 +148,14 @@ main() {
 
     case "$choice" in
         1)
-            install_packages_ubuntu
+            if ask_install; then
+                install_packages_ubuntu
+            fi
             ;;
         2)
-            install_packages_termux
+            if ask_install; then
+                install_packages_termux
+            fi
             ;;
         *)
             echo -e "${RED}Pilihan tidak valid. Silakan pilih 1 atau 2.${NC}"
